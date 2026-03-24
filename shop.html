@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shop — FreshBasket</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+/* ── SHOP BANNER ── */
+.shop-banner{
+  position:relative;overflow:hidden;
+  background:linear-gradient(135deg,#1b3a1b 0%,#2d5a27 55%,#3d7033 100%);
+  padding:70px 0 60px;
+}
+/* Animated grid pattern */
+.shop-banner::before{
+  content:'';position:absolute;inset:0;
+  background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);
+  background-size:40px 40px;
+  animation:gridScroll 20s linear infinite;
+}
+@keyframes gridScroll{from{background-position:0 0}to{background-position:40px 40px}}
+
+.shop-banner::after{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 70% 50%,rgba(106,173,94,.2) 0%,transparent 60%);
+}
+.shop-banner .container{position:relative;z-index:2}
+
+/* ── SHOP LAYOUT ── */
+.shop-layout{display:grid;grid-template-columns:240px 1fr;gap:36px;align-items:start;padding:50px 0 80px}
+
+/* Sidebar */
+.sidebar{background:#fff;border-radius:var(--r);border:1px solid var(--border);padding:24px;position:sticky;top:90px}
+.sidebar-title{font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:14px}
+.sidebar-cats{display:flex;flex-direction:column;gap:4px;margin-bottom:28px}
+.sidebar-cat{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;cursor:pointer;font-size:.9rem;font-weight:500;transition:all .2s;border:none;background:none;text-align:left;width:100%}
+.sidebar-cat:hover{background:var(--g100);color:var(--g700)}
+.sidebar-cat.active{background:var(--g700);color:#fff}
+.sidebar-cat i{width:16px;text-align:center;font-size:.85rem}
+.sidebar-cat .cat-count{margin-left:auto;font-size:.72rem;background:rgba(0,0,0,.08);border-radius:50px;padding:2px 7px;font-weight:600}
+.sidebar-cat.active .cat-count{background:rgba(255,255,255,.2)}
+.price-filter{margin-top:4px}
+.price-row{display:flex;gap:8px;align-items:center}
+.price-input{flex:1;border:1.5px solid var(--border);border-radius:8px;padding:8px 10px;font-size:.85rem;width:100%;transition:border-color .2s}
+.price-input:focus{outline:none;border-color:var(--g500)}
+.apply-filter{width:100%;margin-top:10px;background:var(--g700);color:#fff;border:none;border-radius:8px;padding:10px;cursor:pointer;font-size:.85rem;font-weight:600;transition:background .2s}
+.apply-filter:hover{background:var(--g600)}
+
+/* Main area */
+.shop-main{}
+.shop-toolbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;flex-wrap:wrap;gap:12px}
+.results-text{font-size:.9rem;color:var(--muted)}
+.results-text strong{color:var(--text)}
+.sort-select{border:1.5px solid var(--border);border-radius:8px;padding:8px 12px;font-size:.85rem;cursor:pointer;background:#fff;transition:border-color .2s}
+.sort-select:focus{outline:none;border-color:var(--g500)}
+
+/* Search bar */
+.search-bar{display:flex;align-items:center;gap:12px;background:#fff;border:1.5px solid var(--border);border-radius:50px;padding:10px 20px;margin-bottom:28px;transition:border-color .2s;box-shadow:var(--sh-sm)}
+.search-bar:focus-within{border-color:var(--g500)}
+.search-bar i{color:var(--muted);font-size:.9rem}
+.search-bar input{flex:1;border:none;outline:none;font-size:.92rem;background:transparent}
+
+/* Mobile filter toggle */
+.mobile-filter-btn{display:none;align-items:center;gap:8px;background:#fff;border:1.5px solid var(--border);border-radius:50px;padding:9px 18px;font-size:.86rem;font-weight:600;cursor:pointer;transition:all .2s}
+.mobile-filter-btn:hover{border-color:var(--g500);color:var(--g700)}
+
+/* No results */
+.no-results{text-align:center;padding:60px 20px;color:var(--muted);grid-column:1/-1}
+.no-results i{font-size:3rem;margin-bottom:14px;opacity:.3;display:block}
+
+/* Cart float btn */
+.cart-float{position:fixed;bottom:28px;right:28px;z-index:100;background:var(--g700);color:#fff;border:none;border-radius:50px;padding:14px 22px;font-size:.95rem;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:10px;box-shadow:0 8px 32px rgba(45,90,39,.4);transition:all .2s}
+.cart-float:hover{background:var(--g600);transform:translateY(-3px)}
+.cart-float-badge{background:var(--orange);color:#fff;width:22px;height:22px;border-radius:50%;font-size:.75rem;font-weight:700;display:flex;align-items:center;justify-content:center}
+
+@media(max-width:900px){
+  .shop-layout{grid-template-columns:1fr}
+  .sidebar{position:relative;top:auto;display:none}
+  .sidebar.mobile-open{display:block}
+  .mobile-filter-btn{display:flex}
+}
+@media(max-width:600px){
+  .shop-toolbar{flex-direction:column;align-items:stretch}
+}
+</style>
+</head>
+<body data-page="shop">
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><div class="logo-icon"><i class="fa-solid fa-basket-shopping"></i></div>Fresh<span>Basket</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html" data-page="home">Home</a></li>
+      <li><a href="shop.html" data-page="shop">Shop</a></li>
+      <li><a href="why-us.html" data-page="why">Why Us</a></li>
+      <li><a href="contact.html" data-page="contact">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="cart-trigger" onclick="toggleCart()">
+        <i class="fa-solid fa-basket-shopping"></i> Basket
+        <span class="cart-badge" id="cartBadge1">0</span>
+      </button>
+      <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<!-- SHOP BANNER -->
+<div class="shop-banner">
+  <div class="container">
+    <div class="breadcrumb"><a href="index.html">Home</a><i class="fa-solid fa-chevron-right"></i><span>Shop</span></div>
+    <h1>Fresh Grocery <span style="color:#9dd68c">Shop</span></h1>
+    <p>Browse 200+ farm-fresh products. Add to basket and call us to confirm delivery.</p>
+  </div>
+</div>
+
+<!-- SHOP CONTENT -->
+<div class="container">
+  <div class="shop-layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-title"><i class="fa-solid fa-filter" style="margin-right:6px"></i>Categories</div>
+      <div class="sidebar-cats" id="sidebarCats"></div>
+      <div class="sidebar-title">Price Range (KES)</div>
+      <div class="price-filter">
+        <div class="price-row">
+          <input class="price-input" type="number" id="minPrice" placeholder="Min" min="0" value="0">
+          <span style="color:var(--muted);font-size:.8rem">—</span>
+          <input class="price-input" type="number" id="maxPrice" placeholder="Max" min="0" value="1000">
+        </div>
+        <button class="apply-filter" onclick="applyFilters()"><i class="fa-solid fa-check" style="margin-right:6px"></i>Apply Filter</button>
+      </div>
+    </aside>
+
+    <!-- Main -->
+    <main class="shop-main">
+      <div class="search-bar">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="searchInput" placeholder="Search for tomatoes, milk, chicken..." oninput="renderProducts()">
+        <button class="mobile-filter-btn" onclick="toggleSidebar()" style="display:flex;padding:4px 12px;font-size:.8rem"><i class="fa-solid fa-sliders"></i> Filter</button>
+      </div>
+      <div class="shop-toolbar">
+        <div class="results-text" id="resultsText"></div>
+        <select class="sort-select" id="sortSelect" onchange="renderProducts()">
+          <option value="default">Sort: Default</option>
+          <option value="price-asc">Price: Low to High</option>
+          <option value="price-desc">Price: High to Low</option>
+          <option value="name-asc">Name: A–Z</option>
+        </select>
+      </div>
+      <div class="products-grid" id="shopGrid"></div>
+    </main>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-brand-logo"><div class="logo-icon"><i class="fa-solid fa-basket-shopping"></i></div> Fresh<span style="color:var(--orange-lt)">Basket</span></div>
+        <p>Bringing farm-fresh goodness to your table every day. Trusted by hundreds of families across Nairobi.</p>
+      </div>
+      <div class="footer-col"><h4>Quick Links</h4><ul>
+        <li><a href="index.html">Home</a></li><li><a href="shop.html">Shop</a></li>
+        <li><a href="why-us.html">Why Us</a></li><li><a href="contact.html">Contact</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Contact Us</h4>
+        <div class="footer-contact-item"><i class="fa-solid fa-phone"></i><a href="tel:+254743336009">+254 743 336 009</a></div>
+        <div class="footer-contact-item"><i class="fa-brands fa-whatsapp"></i><a href="https://wa.me/254743336009" target="_blank">WhatsApp Us</a></div>
+        <div class="footer-contact-item"><i class="fa-solid fa-envelope"></i><a href="mailto:hello@freshbasket.co.ke">hello@freshbasket.co.ke</a></div>
+        <div class="footer-contact-item"><i class="fa-solid fa-location-dot"></i><span>Nairobi, Kenya</span></div>
+      </div>
+    </div>
+    <div class="footer-bottom">&copy; 2026 FreshBasket. All rights reserved.</div>
+  </div>
+</footer>
+
+<!-- CART -->
+<div class="cart-overlay" id="cartOverlay"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-head"><h2><i class="fa-solid fa-basket-shopping"></i> Your Basket</h2><button class="drawer-close" onclick="closeCart()"><i class="fa-solid fa-xmark"></i></button></div>
+  <div class="cart-body" id="cartBody"></div>
+  <div class="cart-foot" id="cartFoot" style="display:none">
+    <div class="cart-total-row"><span>Total</span><strong id="cartTotalAmt">KES 0</strong></div>
+    <div class="cart-actions">
+      <button class="btn btn-green btn-block" onclick="openOrderModal()"><i class="fa-solid fa-receipt"></i> Review & Place Order</button>
+      <a href="tel:+254743336009" class="btn btn-orange btn-block"><i class="fa-solid fa-phone"></i> Call to Order</a>
+    </div>
+  </div>
+</div>
+<!-- ORDER MODAL -->
+<div class="modal-overlay" id="orderModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeOrderModal()"><i class="fa-solid fa-xmark"></i></button>
+    <h2>Your Order</h2>
+    <p class="modal-sub">Review below, then call or WhatsApp us to confirm delivery.</p>
+    <div id="orderList"></div>
+    <div class="order-total"><span>Order Total</span><span id="orderTotal">KES 0</span></div>
+    <div class="order-actions">
+      <a href="tel:+254743336009" class="btn btn-green btn-block btn-lg"><i class="fa-solid fa-phone"></i> Call: +254 743 336 009</a>
+      <a id="waOrderBtn" href="#" target="_blank" class="btn btn-wa btn-block" onclick="this.href=waOrderLink()"><i class="fa-brands fa-whatsapp"></i> Send Order via WhatsApp</a>
+    </div>
+    <p class="order-note"><i class="fa-solid fa-camera" style="margin-right:5px"></i> Screenshot this order before calling for faster service.</p>
+  </div>
+</div>
+<!-- CART FLOAT -->
+<button class="cart-float" onclick="toggleCart()">
+  <i class="fa-solid fa-basket-shopping"></i> Basket
+  <span class="cart-float-badge" id="cartBadge2">0</span>
+</button>
+<div class="toast" id="toast"></div>
+
+<script src="js/main.js"></script>
+<script>
+const CATEGORIES_ALL = ['All', ...new Set(PRODUCTS.map(p=>p.cat))];
+const CAT_ICONS = {'All':'fa-th-large','Vegetables':'fa-carrot','Fruits':'fa-apple-whole','Dairy & Eggs':'fa-egg','Grains & Pantry':'fa-wheat-awn','Meat & Fish':'fa-drumstick-bite'};
+const CAT_COUNTS = {};
+CATEGORIES_ALL.forEach(c=>{ CAT_COUNTS[c] = c==='All' ? PRODUCTS.length : PRODUCTS.filter(p=>p.cat===c).length; });
+let activeCategory = 'All';
+let minP = 0, maxP = 1000;
+
+function renderSidebar(){
+  document.getElementById('sidebarCats').innerHTML = CATEGORIES_ALL.map(c=>`
+    <button class="sidebar-cat ${c===activeCategory?'active':''}" onclick="setCategory('${c}')">
+      <i class="fa-solid ${CAT_ICONS[c]||'fa-tag'}"></i> ${c}
+      <span class="cat-count">${CAT_COUNTS[c]}</span>
+    </button>`).join('');
+}
+function setCategory(c){ activeCategory=c; renderSidebar(); renderProducts(); }
+function applyFilters(){
+  minP = parseInt(document.getElementById('minPrice').value)||0;
+  maxP = parseInt(document.getElementById('maxPrice').value)||9999;
+  renderProducts();
+}
+function toggleSidebar(){ document.getElementById('sidebar').classList.toggle('mobile-open'); }
+
+function renderProducts(){
+  const q = document.getElementById('searchInput').value.toLowerCase().trim();
+  const sort = document.getElementById('sortSelect').value;
+  let items = PRODUCTS.filter(p=>{
+    const catOk = activeCategory==='All' || p.cat===activeCategory;
+    const priceOk = p.price>=minP && p.price<=maxP;
+    const searchOk = !q || p.name.toLowerCase().includes(q) || p.cat.toLowerCase().includes(q);
+    return catOk && priceOk && searchOk;
+  });
+  if(sort==='price-asc') items.sort((a,b)=>a.price-b.price);
+  else if(sort==='price-desc') items.sort((a,b)=>b.price-a.price);
+  else if(sort==='name-asc') items.sort((a,b)=>a.name.localeCompare(b.name));
+
+  document.getElementById('resultsText').innerHTML = `Showing <strong>${items.length}</strong> products`;
+  document.getElementById('shopGrid').innerHTML = items.length
+    ? items.map(buildProductCard).join('')
+    : `<div class="no-results"><i class="fa-solid fa-magnifying-glass"></i><p>No products found.<br>Try a different search or category.</p></div>`;
+
+  // Sync float badge
+  document.querySelectorAll('.cart-float-badge').forEach(el=>el.textContent=cartCount());
+}
+
+// Override refreshCartUI to also sync float badge
+const _origRefresh = refreshCartUI;
+window.refreshCartUI = function(){
+  _origRefresh();
+  document.querySelectorAll('.cart-float-badge').forEach(el=>el.textContent=cartCount());
+};
+
+renderSidebar(); renderProducts();
+</script>
+</body>
+</html>

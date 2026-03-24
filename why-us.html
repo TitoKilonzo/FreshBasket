@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Why Us — FreshBasket</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+/* ── WHY BANNER — animated leaf scatter ── */
+.why-banner{
+  position:relative;overflow:hidden;
+  background:linear-gradient(160deg,#0e2210 0%,#1b3a1b 40%,#2d5a27 100%);
+  padding:80px 0 70px;
+}
+.why-banner::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 30% 60%,rgba(74,140,63,.3) 0%,transparent 55%),
+    radial-gradient(ellipse at 80% 30%,rgba(106,173,94,.15) 0%,transparent 50%);
+}
+/* Animated floating circles */
+.banner-circle{position:absolute;border-radius:50%;border:1px solid rgba(106,173,94,.15);animation:expandCircle 6s ease-in-out infinite}
+.bc1{width:200px;height:200px;top:-60px;right:10%;animation-delay:0s}
+.bc2{width:340px;height:340px;top:-100px;right:7%;animation-delay:1s;animation-duration:8s}
+.bc3{width:120px;height:120px;bottom:20px;left:8%;animation-delay:2s;animation-duration:7s}
+@keyframes expandCircle{0%,100%{transform:scale(1);opacity:.6}50%{transform:scale(1.08);opacity:.3}}
+.why-banner .container{position:relative;z-index:2}
+
+/* ── FEATURES ── */
+.features-sec{background:var(--cream)}
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
+.feature-card{
+  background:#fff;border-radius:var(--r-lg);padding:34px 28px;
+  border:1px solid var(--border);transition:all .28s var(--ease);
+  position:relative;overflow:hidden;
+}
+.feature-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--g500),var(--g400));
+  transform:scaleX(0);transform-origin:left;transition:transform .3s;
+}
+.feature-card:hover{transform:translateY(-6px);box-shadow:var(--sh-lg)}
+.feature-card:hover::before{transform:scaleX(1)}
+.fc-icon{
+  width:60px;height:60px;border-radius:16px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.3rem;margin-bottom:20px;
+  background:var(--g100);color:var(--g600);
+}
+.feature-card h3{font-size:1.1rem;font-weight:700;margin-bottom:10px}
+.feature-card p{font-size:.88rem;color:var(--muted);line-height:1.7}
+.feature-card .fc-tag{display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-size:.76rem;font-weight:600;color:var(--g500)}
+
+/* ── STORY ── */
+.story-sec{background:var(--warm)}
+.story-inner{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+.story-img-wrap{position:relative}
+.story-img{border-radius:var(--r-lg);overflow:hidden;aspect-ratio:4/3}
+.story-img img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.story-img-wrap:hover .story-img img{transform:scale(1.04)}
+.story-badge{
+  position:absolute;bottom:-18px;right:-18px;
+  background:var(--g700);color:#fff;border-radius:var(--r);
+  padding:18px 22px;box-shadow:var(--sh-lg);
+  font-weight:700;font-size:1rem;text-align:center;
+}
+.story-badge strong{display:block;font-size:1.8rem;font-family:'Playfair Display',serif}
+.story-text .story-checks{margin-top:24px;display:flex;flex-direction:column;gap:12px}
+.story-check{display:flex;align-items:flex-start;gap:12px;font-size:.92rem}
+.story-check i{color:var(--g500);margin-top:3px;flex-shrink:0}
+
+/* ── STATS GRID ── */
+.stats-sec{background:var(--g800)}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px}
+.stat-block{padding:44px 24px;text-align:center;background:rgba(255,255,255,.04);border-radius:0;position:relative}
+.stat-block::after{content:'';position:absolute;top:50%;right:0;height:50%;width:1px;background:rgba(255,255,255,.1);transform:translateY(-50%)}
+.stat-block:last-child::after{display:none}
+.stat-block i{font-size:1.5rem;color:var(--g400);margin-bottom:12px;display:block}
+.stat-block strong{display:block;font-family:'Playfair Display',serif;font-size:2.2rem;color:#fff;font-weight:900}
+.stat-block span{font-size:.82rem;color:rgba(255,255,255,.6);margin-top:4px;display:block}
+
+/* ── PROCESS ── */
+.process-sec{background:var(--cream)}
+.process-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative}
+.process-steps::before{content:'';position:absolute;top:36px;left:12.5%;right:12.5%;height:2px;background:linear-gradient(90deg,var(--g200,#c8e6c0),var(--g500));z-index:0}
+.step{text-align:center;padding:0 16px;position:relative;z-index:1}
+.step-num{
+  width:72px;height:72px;border-radius:50%;
+  background:var(--g700);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:900;
+  margin:0 auto 20px;border:4px solid var(--cream);
+  box-shadow:0 0 0 3px var(--g400);
+}
+.step h3{font-size:.98rem;font-weight:700;margin-bottom:8px}
+.step p{font-size:.83rem;color:var(--muted);line-height:1.6}
+
+/* ── TESTIMONIALS ── */
+.testi-sec{background:var(--warm)}
+.testi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+.testi-card{background:#fff;border-radius:var(--r);padding:28px;border:1px solid var(--border);box-shadow:var(--sh-sm)}
+.testi-stars{color:#f5a623;font-size:.85rem;margin-bottom:12px}
+.testi-card p{font-size:.9rem;color:var(--text);line-height:1.7;margin-bottom:18px;font-style:italic}
+.testi-author{display:flex;align-items:center;gap:12px}
+.testi-avatar{width:44px;height:44px;border-radius:50%;overflow:hidden;background:var(--g100);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.testi-avatar img{width:100%;height:100%;object-fit:cover}
+.testi-author h4{font-size:.9rem;font-weight:700}
+.testi-author p{font-size:.78rem;color:var(--muted);margin:0}
+
+/* ── CTA ── */
+.why-cta{background:linear-gradient(135deg,var(--g800),var(--g700));padding:80px 0;text-align:center;position:relative;overflow:hidden}
+.why-cta::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(106,173,94,.2) 0%,transparent 70%)}
+.why-cta .container{position:relative;z-index:1}
+.why-cta h2{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.6rem);color:#fff;margin-bottom:14px}
+.why-cta p{color:rgba(255,255,255,.7);font-size:1rem;margin-bottom:36px;max-width:500px;margin-inline:auto}
+.why-cta .cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.reveal.visible{opacity:1;transform:none}
+
+@media(max-width:900px){
+  .story-inner{grid-template-columns:1fr;gap:50px}
+  .stats-grid{grid-template-columns:repeat(2,1fr)}
+  .process-steps{grid-template-columns:repeat(2,1fr);gap:32px}
+  .process-steps::before{display:none}
+}
+@media(max-width:600px){
+  .stats-grid{grid-template-columns:1fr 1fr}
+  .stat-block{padding:30px 16px}
+}
+</style>
+</head>
+<body data-page="why">
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><div class="logo-icon"><i class="fa-solid fa-basket-shopping"></i></div>Fresh<span>Basket</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html" data-page="home">Home</a></li>
+      <li><a href="shop.html" data-page="shop">Shop</a></li>
+      <li><a href="why-us.html" data-page="why">Why Us</a></li>
+      <li><a href="contact.html" data-page="contact">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="cart-trigger" onclick="toggleCart()"><i class="fa-solid fa-basket-shopping"></i> Basket <span class="cart-badge" id="cartBadge1">0</span></button>
+      <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<!-- BANNER -->
+<div class="why-banner">
+  <div class="banner-circle bc1"></div>
+  <div class="banner-circle bc2"></div>
+  <div class="banner-circle bc3"></div>
+  <div class="container">
+    <div class="breadcrumb"><a href="index.html">Home</a><i class="fa-solid fa-chevron-right"></i><span>Why Us</span></div>
+    <h1>Why <span style="color:#9dd68c">FreshBasket?</span></h1>
+    <p>We're not just another grocery delivery service. We're your trusted partner in fresh, healthy living.</p>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section class="features-sec section">
+  <div class="container">
+    <div style="text-align:center;max-width:560px;margin:0 auto 52px" class="reveal">
+      <span class="section-label"><i class="fa-solid fa-star"></i> Our Advantages</span>
+      <h2 class="section-title">What Makes Us <span>Different</span></h2>
+      <p class="section-sub">From farm to your table, we've built a service you can trust every single day.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card reveal"><div class="fc-icon"><i class="fa-solid fa-seedling"></i></div><h3>100% Organic Sourcing</h3><p>Every item is sourced from certified organic farms that use no harmful pesticides or synthetic fertilizers. Your family deserves the best.</p><span class="fc-tag"><i class="fa-solid fa-check-circle"></i> Certified Organic</span></div>
+      <div class="feature-card reveal" style="transition-delay:.07s"><div class="fc-icon"><i class="fa-solid fa-truck-fast"></i></div><h3>Same-Day Delivery</h3><p>Order before 2:00PM and your groceries arrive the same day. We deliver across all major Nairobi estates — fast and reliable.</p><span class="fc-tag"><i class="fa-solid fa-clock"></i> Order by 2PM</span></div>
+      <div class="feature-card reveal" style="transition-delay:.14s"><div class="fc-icon"><i class="fa-solid fa-shield-halved"></i></div><h3>Freshness Guarantee</h3><p>If any item doesn't meet your expectations, we'll replace it or issue a full refund — no questions asked, no hassle.</p><span class="fc-tag"><i class="fa-solid fa-rotate-left"></i> 100% Refund Policy</span></div>
+      <div class="feature-card reveal" style="transition-delay:.21s"><div class="fc-icon"><i class="fa-solid fa-handshake"></i></div><h3>Direct Farm Partnerships</h3><p>We partner directly with local Kenyan farmers, cutting out middlemen so you get fresher produce at better prices while supporting local agriculture.</p><span class="fc-tag"><i class="fa-solid fa-leaf"></i> Supporting Local</span></div>
+      <div class="feature-card reveal" style="transition-delay:.28s"><div class="fc-icon"><i class="fa-solid fa-headset"></i></div><h3>Direct Phone Support</h3><p>Call or WhatsApp us directly to place orders, customize your basket, ask about availability, or track your delivery. A real person answers.</p><span class="fc-tag"><i class="fa-brands fa-whatsapp"></i> WhatsApp Available</span></div>
+      <div class="feature-card reveal" style="transition-delay:.35s"><div class="fc-icon"><i class="fa-solid fa-tags"></i></div><h3>Competitive Pricing</h3><p>Because we source directly from farms and keep our operations lean, we pass the savings onto you. Fresh quality doesn't have to be expensive.</p><span class="fc-tag"><i class="fa-solid fa-percent"></i> Best Value Prices</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats-sec section-sm">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-block reveal"><i class="fa-solid fa-users"></i><strong>500+</strong><span>Happy Customers</span></div>
+      <div class="stat-block reveal" style="transition-delay:.08s"><i class="fa-solid fa-box-open"></i><strong>200+</strong><span>Fresh Products</span></div>
+      <div class="stat-block reveal" style="transition-delay:.16s"><i class="fa-solid fa-handshake"></i><strong>20+</strong><span>Farm Partners</span></div>
+      <div class="stat-block reveal" style="transition-delay:.24s"><i class="fa-solid fa-star"></i><strong>4.9</strong><span>Average Rating</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- OUR STORY -->
+<section class="story-sec section">
+  <div class="container">
+    <div class="story-inner">
+      <div class="story-img-wrap reveal">
+        <div class="story-img">
+          <img src="https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=700&q=85&auto=format" alt="Fresh vegetables at market">
+        </div>
+        <div class="story-badge"><strong>2021</strong>Founded<br>in Nairobi</div>
+      </div>
+      <div class="story-text reveal" style="transition-delay:.15s">
+        <span class="section-label"><i class="fa-solid fa-book-open"></i> Our Story</span>
+        <h2 class="section-title">Born from a <span>Passion for Fresh Food</span></h2>
+        <p class="section-sub">FreshBasket started when our founder noticed how hard it was for Nairobi families to access truly fresh, affordable organic produce without visiting crowded markets. We set out to solve that — by going directly to the farmers.</p>
+        <div class="story-checks">
+          <div class="story-check"><i class="fa-solid fa-circle-check"></i><span>We visit our partner farms weekly to inspect quality and freshness before each delivery batch.</span></div>
+          <div class="story-check"><i class="fa-solid fa-circle-check"></i><span>Our cold chain ensures produce arrives at your door as fresh as the day it was harvested.</span></div>
+          <div class="story-check"><i class="fa-solid fa-circle-check"></i><span>We are committed to sustainable, eco-friendly packaging across all our deliveries.</span></div>
+          <div class="story-check"><i class="fa-solid fa-circle-check"></i><span>Every order directly supports Kenyan smallholder farmers and their families.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="process-sec section">
+  <div class="container">
+    <div style="text-align:center;max-width:500px;margin:0 auto 56px" class="reveal">
+      <span class="section-label"><i class="fa-solid fa-route"></i> How It Works</span>
+      <h2 class="section-title">From Farm to <span>Your Table</span></h2>
+    </div>
+    <div class="process-steps">
+      <div class="step reveal"><div class="step-num">1</div><h3>Browse & Select</h3><p>Explore our full catalogue online and add your favourite items to your basket.</p></div>
+      <div class="step reveal" style="transition-delay:.1s"><div class="step-num">2</div><h3>Call or WhatsApp</h3><p>Contact us to confirm your order, check availability, and arrange your delivery slot.</p></div>
+      <div class="step reveal" style="transition-delay:.2s"><div class="step-num">3</div><h3>We Pack Fresh</h3><p>Our team handpicks your items fresh from the source, packing them with care.</p></div>
+      <div class="step reveal" style="transition-delay:.3s"><div class="step-num">4</div><h3>Delivered to You</h3><p>Your fresh groceries are delivered straight to your door, same day.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testi-sec section">
+  <div class="container">
+    <div style="text-align:center;max-width:500px;margin:0 auto 48px" class="reveal">
+      <span class="section-label"><i class="fa-solid fa-comments"></i> What Customers Say</span>
+      <h2 class="section-title">Real Stories from <span>Real Customers</span></h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card reveal">
+        <div class="testi-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+        <p>"I've been ordering from FreshBasket for 6 months now. The tomatoes and avocados are always perfectly fresh. Delivery is always on time — sometimes even earlier than expected!"</p>
+        <div class="testi-author"><div class="testi-avatar"><img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=100&q=80" alt="Jane Wanjiku"></div><div><h4>Jane Wanjiku</h4><p>Westlands, Nairobi</p></div></div>
+      </div>
+      <div class="testi-card reveal" style="transition-delay:.08s">
+        <div class="testi-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+        <p>"As a busy mum, FreshBasket has been a lifesaver. I WhatsApp my order in the morning and by 5PM everything is at my door. The prices are fair and the quality is excellent."</p>
+        <div class="testi-author"><div class="testi-avatar"><img src="https://images.unsplash.com/photo-1520810627419-35e592be37f3?w=100&q=80" alt="Mary Kamau"></div><div><h4>Mary Kamau</h4><p>Karen, Nairobi</p></div></div>
+      </div>
+      <div class="testi-card reveal" style="transition-delay:.16s">
+        <div class="testi-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i></div>
+        <p>"The chicken and beef from FreshBasket is noticeably fresher than what I get at the supermarket. You can really taste the difference. I won't go back to supermarket meat."</p>
+        <div class="testi-author"><div class="testi-avatar"><img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&q=80" alt="James Otieno"></div><div><h4>James Otieno</h4><p>Kilimani, Nairobi</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="why-cta">
+  <div class="container">
+    <h2 class="reveal">Experience the FreshBasket Difference</h2>
+    <p class="reveal">Join hundreds of Nairobi families who've made the switch to fresher, healthier groceries.</p>
+    <div class="why-cta cta-btns reveal">
+      <a href="shop.html" class="btn btn-orange btn-lg"><i class="fa-solid fa-basket-shopping"></i> Start Shopping</a>
+      <a href="contact.html" class="btn btn-ghost-white btn-lg"><i class="fa-solid fa-phone"></i> Contact Us</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand"><div class="footer-brand-logo"><div class="logo-icon"><i class="fa-solid fa-basket-shopping"></i></div>Fresh<span style="color:var(--orange-lt)">Basket</span></div><p>Bringing farm-fresh goodness to your table every day.</p></div>
+      <div class="footer-col"><h4>Quick Links</h4><ul><li><a href="index.html">Home</a></li><li><a href="shop.html">Shop</a></li><li><a href="why-us.html">Why Us</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div class="footer-col"><h4>Contact Us</h4>
+        <div class="footer-contact-item"><i class="fa-solid fa-phone"></i><a href="tel:+254743336009">+254 743 336 009</a></div>
+        <div class="footer-contact-item"><i class="fa-brands fa-whatsapp"></i><a href="https://wa.me/254743336009" target="_blank">WhatsApp Us</a></div>
+        <div class="footer-contact-item"><i class="fa-solid fa-envelope"></i><a href="mailto:hello@freshbasket.co.ke">hello@freshbasket.co.ke</a></div>
+      </div>
+    </div>
+    <div class="footer-bottom">&copy; 2026 FreshBasket. All rights reserved.</div>
+  </div>
+</footer>
+
+<!-- CART -->
+<div class="cart-overlay" id="cartOverlay"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-head"><h2><i class="fa-solid fa-basket-shopping"></i> Your Basket</h2><button class="drawer-close" onclick="closeCart()"><i class="fa-solid fa-xmark"></i></button></div>
+  <div class="cart-body" id="cartBody"></div>
+  <div class="cart-foot" id="cartFoot" style="display:none">
+    <div class="cart-total-row"><span>Total</span><strong id="cartTotalAmt">KES 0</strong></div>
+    <div class="cart-actions">
+      <button class="btn btn-green btn-block" onclick="openOrderModal()"><i class="fa-solid fa-receipt"></i> Review & Place Order</button>
+      <a href="tel:+254743336009" class="btn btn-orange btn-block"><i class="fa-solid fa-phone"></i> Call to Order</a>
+    </div>
+  </div>
+</div>
+<div class="modal-overlay" id="orderModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeOrderModal()"><i class="fa-solid fa-xmark"></i></button>
+    <h2>Your Order</h2><p class="modal-sub">Review below, then call or WhatsApp us to confirm.</p>
+    <div id="orderList"></div>
+    <div class="order-total"><span>Total</span><span id="orderTotal">KES 0</span></div>
+    <div class="order-actions">
+      <a href="tel:+254743336009" class="btn btn-green btn-block btn-lg"><i class="fa-solid fa-phone"></i> Call: +254 743 336 009</a>
+      <a id="waOrderBtn" href="#" target="_blank" class="btn btn-wa btn-block" onclick="this.href=waOrderLink()"><i class="fa-brands fa-whatsapp"></i> Send via WhatsApp</a>
+    </div>
+    <p class="order-note"><i class="fa-solid fa-camera" style="margin-right:5px"></i>Screenshot for faster service.</p>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script src="js/main.js"></script>
+<script>
+const io = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
